@@ -20,3 +20,4 @@ build/_output
 bin/kustomize
 bin/node-specific-sizing
 deploy.yaml
+build.yaml

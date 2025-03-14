@@ -1,27 +1,27 @@
 
-global:
-  imageRegistry: docker.io
-
 image:
-  sha: ""
+  repository: "ghcr.io/manomanotech/kubernetes-node-specific-sizing"
+  tag: "sha-28e2a98"
 
-annotations: {}
+replicas: 3
 
-rbac:
-  create: true
-  ## Use an existing ClusterRole/Role (depending on rbac.namespaced false/true)
-  # useExistingRole: name-of-some-role
-  # useExistingClusterRole: name-of-some-clusterRole
-  extraClusterRoleRules: []
-  # - apiGroups: []
-  #   resources: []
-  #   verbs: []
-
-## Override the deployment namespace
-##
-namespaceOverride: ""
+imagePullPolicy: IfNotPresent
 
 serviceAccount:
-  autoMount: true
-  labels: {}
   annotations: {}
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 128Mi
+  requests:
+    cpu: 10m
+    memory: 64Mi
+
+
+# Certmanager specific values
+certmanager:
+  enabled: false
+  crds:
+    enabled: true
+    keep: true
