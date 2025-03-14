@@ -1,0 +1,23 @@
+name: Publish Helm charts
+
+permissions: {}
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      packages: write
+      pull-requests: write
+    steps:
+      - name: Publish Helm charts
+        uses: stefanprodan/helm-gh-pages@master
+        with:
+          charts_dir: chart
+          token: ${{ secrets.GITHUB_TOKEN }}
