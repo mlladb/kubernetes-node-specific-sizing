@@ -11,4 +11,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: node-specific-sizing
-  namespace: kube-system
+  namespace: node-specific-sizing

@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: kube-system
+namespace: node-specific-sizing
 
 resources:
 - certmanager.yaml
@@ -10,3 +10,8 @@ resources:
 - serviceaccount.yaml
 - mutatingadmissionwebhook.yaml
 - service.yaml
+
+labels:
+  - pairs:
+      app: node-specific-sizing
+      user: mark-lynch

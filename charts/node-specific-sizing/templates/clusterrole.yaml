@@ -1,14 +1,10 @@
-{{- if and .Values.rbac.create (or (not .Values.rbac.namespaced) .Values.rbac.extraClusterRoleRules) (not .Values.rbac.useExistingClusterRole) }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  labels: 
-    {{ - include "node-specific-sizing.labels" . | nindent 4 }}
-  {{- with .Values.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  name: {{ include "node-specific-sizing.fullname" . }}
+  name: {{ include "chart.fullname" . }}-role
+  labels:
+    app.kubernetes.io/component: rbac
+  {{- include "chart.labels" . | nindent 4 }}
 rules:
   - apiGroups:
       - ""
@@ -18,7 +14,3 @@ rules:
       - get
       - list
       - watch
-    {{- with .Values.rbac.extraClusterRoleRules }}
-    {{- toYaml . | nindent 2 }}
-    {{- end}}
-{{- end }}

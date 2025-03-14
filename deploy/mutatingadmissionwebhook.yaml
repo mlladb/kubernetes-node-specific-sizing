@@ -3,7 +3,7 @@ apiVersion: admissionregistration.k8s.io/v1
 metadata:
   name: node-specific-sizing
   annotations:
-    cert-manager.io/inject-ca-from: kube-system/node-specific-sizing-client-cert
+    cert-manager.io/inject-ca-from: node-specific-sizing/node-specific-sizing-client-cert
 webhooks:
   - name: node-specific-sizing.svc.cluster.local
     objectSelector:
@@ -15,7 +15,7 @@ webhooks:
     timeoutSeconds: 2
     clientConfig:
       service:
-        namespace: kube-system
+        namespace: node-specific-sizing
         name: node-specific-sizing
         path: /mutate
     rules:

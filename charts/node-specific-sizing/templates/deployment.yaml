@@ -1,21 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "node-specific-sizing.fullname" . }}
+  name: {{ include "chart.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "node-specific-sizing.labels" . | nindent 4 }}
-  {{- if .Values.deployment.annotations }}
-  annotations:
-    {{- toYaml .Values.deployment.annotations | nindent 4 }}
+    app.kubernetes.io/component: controller
+    {{- include "chart.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.deployment.replicas }}
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: {{- include "node-specific-sizing.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: controller
+      {{- include "chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "node-specific-sizing.labels" . | nindent 4 }}
+        app.kubernetes.io/component: controller
+      {{- include "chart.selectorLabels" . | nindent 8 }}
     spec:
-      {{- include "node-specific-sizing.pod" . | nindent 6 }}
-        
+      serviceAccountName: {{ include "chart.serviceAccountName" . }}
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
+          imagePullPolicy:  {{ .Values.image.pullPolicy }}
+          resources: {{- toYaml .Values.resources | nindent 10 }}
+          env:
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          volumeMounts:
+            - mountPath: /tmp/k8s-webhook-server/serving-certs
+              name: node-specific-sizing-serving-cert
+              readOnly: true
+          securityContext:
+            runAsNonRoot: true
+      volumes:
+        - name: serving-certs
+          secret:
+            defaultMode: 420
+            secretName: {{ include "chart.fullname" . }}-server-cert
