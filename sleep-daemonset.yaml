@@ -21,7 +21,8 @@ spec:
         # node-specific-sizing.manomano.tech/limit-cpu-fraction: "0.1"
         # node-specific-sizing.manomano.tech/request-memory-fraction: "0.8"
         # node-specific-sizing.manomano.tech/limit-memory-fraction: "0.1"
-        node-specific-sizing.manomano.tech/minimum-memory: 200Mi
+        # node-specific-sizing.manomano.tech/minimum-memory: 200Mi
+        node-specific-sizing.manomano.tech/request-memory-fraction: "0.1"
         node-specific-sizing.manomano.tech/maximum-memory: 500Mi
     spec:
       terminationGracePeriodSeconds: 0
