@@ -4,8 +4,6 @@ permissions: {}
 
 on:
   push:
-    tags:
-      - 'v*'
 
 jobs:
   release:
