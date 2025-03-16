@@ -14,4 +14,4 @@ spec:
     - port: {{ default "443" .Values.service.port }}
       targetPort: {{ default "8443" .Values.service.targetPort }}
       protocol: TCP
-      name: {{default (include "chart.fullname" .) .Values.service.portName }}
+      name: {{ default "https" .Values.service.portName }}
