@@ -11,7 +11,7 @@ spec:
   selector:
   {{- include "chart.selectorLabels" . | nindent 4 }}
   ports:
-    - port: {{ default "443" .Values.service.port }}
-      targetPort: {{ default "8443" .Values.service.targetPort }}
-      protocol: TCP
-      name: {{ default "https" .Values.service.portName }}
+  - name: "https"
+    port: 443
+    targetPort: 8443
+    protocol: TCP
