@@ -32,7 +32,7 @@ spec:
                 fieldPath: metadata.namespace
           volumeMounts:
             - mountPath: /tmp/k8s-webhook-server/serving-certs
-              name: node-specific-sizing-serving-cert
+              name: serving-certs
               readOnly: true
           securityContext:
             runAsNonRoot: true
