@@ -12,7 +12,7 @@ webhooks:
     admissionReviewVersions: [ "v1" ]
     sideEffects: None
     failurePolicy: Ignore
-    timeoutSeconds: 2
+    timeoutSeconds: 1
     clientConfig:
       service:
         namespace: kube-system
