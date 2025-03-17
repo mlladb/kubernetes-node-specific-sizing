@@ -23,7 +23,7 @@ spec:
         # node-specific-sizing.manomano.tech/limit-memory-fraction: "0.1"
         # node-specific-sizing.manomano.tech/minimum-memory: 200Mi
         node-specific-sizing.manomano.tech/request-memory-fraction: "0.1"
-        node-specific-sizing.manomano.tech/maximum-memory: 500Mi
+        node-specific-sizing.manomano.tech/maximum-memory: 800Mi
     spec:
       terminationGracePeriodSeconds: 0
       priorityClassName: system-node-critical
