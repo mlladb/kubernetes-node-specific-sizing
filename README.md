@@ -7,7 +7,7 @@ Helps you resize pods created by a DaemonSet depending on the amount of allocata
 ### Install
 
 ```bash
-helm repo add node-specific-sizing https://mlladb.github.io/kubernetes-node-specific-sizing/
+helm repo add node-specific-sizing https://manomanotech.github.io/kubernetes-node-specific-sizing/
 helm repo update
 helm repo list
 helm install node-specific-sizing node-specific-sizing/node-specific-sizing --namespace node-specific-sizing --create-namespace
