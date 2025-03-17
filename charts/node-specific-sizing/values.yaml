@@ -8,6 +8,7 @@ replicas: 3
 imagePullPolicy: IfNotPresent
 
 serviceAccount:
+  create: true
   annotations: {}
 
 resources:
