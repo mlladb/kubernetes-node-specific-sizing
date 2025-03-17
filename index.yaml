@@ -3,7 +3,7 @@ entries:
   node-specific-sizing:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2025-03-16T23:57:28.865609172Z"
+    created: "2025-03-17T00:46:51.872714301Z"
     dependencies:
     - alias: certmanager
       condition: certmanager.enabled
@@ -12,10 +12,10 @@ entries:
       version: v1.15.3
     description: A Kubernetes controller that helps resize pods created by a DaemonSet
       depending on the amount of allocatable resources present on the node.
-    digest: b2c4e655f46795cdef652dc0036a9a4cb18aa7d15902e1fc1281c768cb1a09bf
+    digest: 67defa27be51f81699e0076e0b50af5dd2a3c1bdb92f7d91da2655d14cc71724
     name: node-specific-sizing
     type: application
     urls:
     - https://mlladb.github.io/kubernetes-node-specific-sizing/node-specific-sizing-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-16T23:57:28.858792118Z"
+generated: "2025-03-17T00:46:51.867535125Z"
