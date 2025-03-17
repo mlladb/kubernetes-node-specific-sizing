@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: node-specific-sizing
-  namespace: node-specific-sizing
   labels:
     app: node-specific-sizing
 spec:
@@ -19,7 +18,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: node-specific-sizing
-          image: ghcr.io/manomanotech/kubernetes-node-specific-sizing:sha-28e2a98
+          image: node-specific-sizing:latest
           imagePullPolicy: IfNotPresent
           env:
           - name: POD_NAMESPACE
@@ -28,12 +27,12 @@ spec:
                 fieldPath: metadata.namespace
           volumeMounts:
             - mountPath: /tmp/k8s-webhook-server/serving-certs
-              name: node-specific-sizing-serving-cert
+              name: cert
               readOnly: true
           securityContext:
             runAsNonRoot: true
       volumes:
-        - name: node-specific-sizing-serving-cert
+        - name: cert
           secret:
             defaultMode: 420
-            secretName: node-specific-sizing-serving-cert
+            secretName: node-specific-sizing-cert
